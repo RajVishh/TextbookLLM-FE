@@ -1,4 +1,4 @@
-import { cn } from "@/lib/utils"
+import { cn, BACKEND_URL } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
 import {
   Card,
@@ -23,7 +23,7 @@ export function LoginForm({
   // No longer use navigate because we use window.location.href for top-level redirect
   const handleGoogleLogin = () => {
     // Implement Google OAuth login flow here
-    window.location.href = "http://localhost:3000/auth/google";
+    window.location.href = `${BACKEND_URL}/auth/google`;
   }
   return (
     <div className={cn("flex flex-col gap-6", className)} {...props}>

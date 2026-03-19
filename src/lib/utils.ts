@@ -2,6 +2,7 @@ import { clsx, type ClassValue } from "clsx"
 import { twMerge } from "tailwind-merge"
 import axios from "axios";
 
+export const BACKEND_URL = import.meta.env.VITE_BACKEND_URL || "http://localhost:3000";
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
 }
@@ -10,7 +11,7 @@ export function cn(...inputs: ClassValue[]) {
 export const generateRoot = async (chatId: string) => {
   if (!chatId) return;
   try {
-    const res = await axios.post("http://localhost:3000/api/mindmap/root", {
+    const res = await axios.post(`${BACKEND_URL}/api/mindmap/root`, {
       chatId: chatId
     });
     return res.data;
@@ -24,7 +25,7 @@ export const generateRoot = async (chatId: string) => {
 export const generateFlashcards = async (chatId: string) => {
   if (!chatId) return;
   try {
-    const res = await axios.post("http://localhost:3000/api/flashcards/generate-flashcards", {
+    const res = await axios.post(`${BACKEND_URL}/api/flashcards/generate-flashcards`, {
       chatId: chatId
     });
     return res.data;
@@ -37,7 +38,7 @@ export const generateFlashcards = async (chatId: string) => {
 export const generateQuiz = async (chatId: string) => {
   if (!chatId) return;
   try {
-    const res = await axios.post("http://localhost:3000/api/quiz/generate-quiz", {
+    const res = await axios.post(`${BACKEND_URL}/api/quiz/generate-quiz`, {
       chatId: chatId
     });
     return res.data;
@@ -50,7 +51,7 @@ export const generateQuiz = async (chatId: string) => {
 export const generateAudioOverview = async (chatId: string) => {
   if (!chatId) return;
   try {
-    const res = await axios.post("http://localhost:3000/api/audio/generate", {
+    const res = await axios.post(`${BACKEND_URL}/api/audio/generate`, {
       chatId: chatId
     }, {
       responseType: 'blob' 

@@ -4,6 +4,7 @@ import { RightPanel } from "./rightpanel"
 import { Separator } from "@/components/ui/separator"
 import { useState, useEffect } from "react"
 import { LoginForm } from "@/components/login-form"
+import { BACKEND_URL } from "@/lib/utils"
 
 export type ChatSession = { id: string; title: string };
 
@@ -46,7 +47,7 @@ function Dashboard() {
 
   // Check Authentication
   useEffect(() => {
-    fetch("http://localhost:3000/api/user", { credentials: "include" })
+    fetch(`${BACKEND_URL}/api/user`, { credentials: "include" })
       .then(res => {
         if (!res.ok) throw new Error("Not logged in");
         return res.json();

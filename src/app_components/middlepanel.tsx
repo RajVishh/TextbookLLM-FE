@@ -2,6 +2,7 @@ import { UploadComponent } from "./fileuploader.tsx"
 import { InputInline } from "./searchinput.tsx"
 import { ChatArea } from "./chatarea.tsx"
 import { useState, useEffect } from "react"
+import { BACKEND_URL } from "@/lib/utils"
 import type { ChatSession } from "./dashboard"
 
 interface MiddlePanelProps {
@@ -21,7 +22,7 @@ export const MiddlePanel = ({ chatId, setChats, onMessageSent }: MiddlePanelProp
         setMessages([]);
         setUploadedFiles([]);
 
-        fetch(`http://localhost:3000/messages/${chatId}`)
+        fetch(`${BACKEND_URL}/messages/${chatId}`)
             .then(res => res.json())
             .then(data => {
                 if (data.messages) {
@@ -64,7 +65,7 @@ export const MiddlePanel = ({ chatId, setChats, onMessageSent }: MiddlePanelProp
         }
 
         try {
-            const res = await fetch("http://localhost:3000/ask", {
+            const res = await fetch(`${BACKEND_URL}/ask`, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ question, chat_id: chatId })

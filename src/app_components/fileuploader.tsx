@@ -3,6 +3,7 @@
 import { Upload, X } from "lucide-react";
 import * as React from "react";
 import { toast } from "sonner";
+import { BACKEND_URL } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import {
   FileUpload,
@@ -37,7 +38,7 @@ export function UploadComponent({ chatId, initialFiles = [] }: { chatId: string,
               formData.append("chat_id", chatId);
             }
 
-            const res = await fetch("http://localhost:3000/upload", {
+            const res = await fetch(`${BACKEND_URL}/upload`, {
               method: "POST",
               body: formData
             });

@@ -4,7 +4,7 @@ import type { ChatSession } from "../app_components/dashboard"
 import { AvatarDemo } from "./profile"
 import { useEffect, useState } from "react"
 import axios from "axios"
-
+import { BACKEND_URL } from "@/lib/utils"
 
 
 interface LeftPanelProps {
@@ -21,7 +21,7 @@ export const LeftPanel = ({ chats, activeChatId, onSelectChat, onNewChat }: Left
     useEffect(() => {
         const fetchProfile = async () => {
             try {
-                const response = await axios.get("http://localhost:3000/api/user", {
+                const response = await axios.get(`${BACKEND_URL}/api/user`, {
                     withCredentials: true
                 })
                 if (response.data) {
@@ -36,7 +36,7 @@ export const LeftPanel = ({ chats, activeChatId, onSelectChat, onNewChat }: Left
 
     const handleLogout = async () => {
         try {
-            await axios.post("http://localhost:3000/api/logout", {}, { withCredentials: true })
+            await axios.post(`${BACKEND_URL}/api/logout`, {}, { withCredentials: true })
             window.location.href = "/login";
         } catch (error) {
             console.error("Logout failed", error);
