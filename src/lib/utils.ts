@@ -2,7 +2,7 @@ import { clsx, type ClassValue } from "clsx"
 import { twMerge } from "tailwind-merge"
 import axios from "axios";
 
-export const BACKEND_URL = import.meta.env.VITE_BACKEND_URL || (import.meta.env.PROD ? "https://textbookllm-be-production.up.railway.app" : "http://localhost:3000");
+export const BACKEND_URL = import.meta.env.PROD ? "https://textbookllm-be-production.up.railway.app" : "http://localhost:3000";
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
 }
